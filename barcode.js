@@ -305,6 +305,7 @@ var barcode = function() {
 
 	function setHandler(h) {
 		handler = h;
+		alert(h);
 	}
 
 	function normalize(input, total) {
