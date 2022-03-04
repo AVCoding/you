@@ -1,7 +1,3 @@
-
-
-barcode.init();
-
 var barcode = function() {
 
 	var localMediaStream = null;
@@ -69,6 +65,7 @@ var barcode = function() {
 	barcode.setHandler(function(barcode) {
 	    console.log(barcode);
 	});
+	barcode.init();
 
 	function init() {
 
