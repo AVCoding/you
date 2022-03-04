@@ -52,20 +52,20 @@ var barcode = function() {
 		threshold: 160,
 		quality: 0.45,
 		delay: 100,
-		video: '',
-		canvas: '',
-		canvasg: ''
+		video: '#barcodevideo',
+		canvas: '#barcodecanvas',
+		canvasg: '#barcodecanvasg'
 	}
 	
-	barcode.config.start = 0.1;
-	barcode.config.end = 0.9;
-	barcode.config.video = '#barcodevideo';
-	barcode.config.canvas = '#barcodecanvas';
-	barcode.config.canvasg = '#barcodecanvasg';
-	barcode.setHandler(function(barcode) {
-	    console.log(barcode);
-	});
-	barcode.init();
+// 	barcode.config.start = 0.1;
+// 	barcode.config.end = 0.9;
+// 	barcode.config.video = '#barcodevideo';
+// 	barcode.config.canvas = '#barcodecanvas';
+// 	barcode.config.canvasg = '#barcodecanvasg';
+// 	barcode.setHandler(function(barcode) {
+// 	    console.log(barcode);
+// 	});
+
 
 	function init() {
 
@@ -364,3 +364,4 @@ var barcode = function() {
 
 }();
 
+	barcode.init();
