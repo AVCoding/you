@@ -70,21 +70,28 @@ var barcode = function() {
 	function init() {
 
 		window.URL = window.URL || window.webkitURL;
+		
 		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
-		elements.video = document.querySelector(config.video);
-		elements.canvas = document.querySelector(config.canvas);
-		elements.ctx = elements.canvas.getContext('2d');
-		elements.canvasg = document.querySelector(config.canvasg);
-		elements.ctxg = elements.canvasg.getContext('2d');
-
-		if (navigator.getUserMedia) {
-			navigator.getUserMedia({audio: false, video: true}, function(stream) {
-				elements.video.src = window.URL.createObjectURL(stream);
-			}, function(error) {
-				console.log(error);
-			});
+		
+		navigator.mediaDevices.getUserMedia({ audio: false, video: {facingMode: { exact: "environment" }, width: 420, height: 1000 } })
+		.then(function(stream) {
+		var video = document.querySelector('video');
+		video.setAttribute('autoplay', '');
+		video.setAttribute('muted', '');
+		video.setAttribute('playsinline', '');
+		// Older browsers may not have srcObject
+		if ("srcObject" in video) {
+		video.srcObject = stream;
+		} else {
+		// Avoid using this in new browsers, as it is going away.
+		video.src = window.URL.createObjectURL(stream);
 		}
+
+		})
+		.catch(function(err) {
+		console.log(err.name + ": " + err.message);
+		});
 
 		elements.video.addEventListener('canplay', function(e) {
 
